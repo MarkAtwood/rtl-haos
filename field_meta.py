@@ -180,6 +180,11 @@ FIELD_META = {
     "depth_mm":             ("mm", "distance", "mdi:arrow-collapse-down", "Depth"),
     "depth_in":             ("in", "distance", "mdi:arrow-collapse-down", "Depth"),
 
+    # --- Timestamp ---
+    # rtl_433 outputs a "time" field when run with -M time or -M utc.
+    # This is useful to see when a device last transmitted, even if values didn't change.
+    "time":                 (None, "timestamp", "mdi:clock-in", "Last Seen"),
+
     # --- Utility Meters ---
     "Consumption":          ("ft³", "gas", "mdi:fire", "Gas Usage"),
     "consumption":          ("ft³", "gas", "mdi:fire", "Gas Usage"),
