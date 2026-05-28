@@ -495,6 +495,48 @@ def flatten(d, sep="_") -> dict:
 
     recurse(d)
     return obj
+
+
+def _extract_device_id(data: dict):
+    """Extract device ID from rtl_433 output, handling flex decoder nested structures.
+
+    Flex decoders output IDs in nested structures like:
+        {"model": "...", "rows": [{"id": 12345, ...}], ...}
+
+    Standard decoders use top-level id:
+        {"model": "...", "id": 12345, ...}
+
+    Returns the extracted ID or "Unknown" if not found.
+    """
+    # 1. Try top-level id (standard decoders)
+    raw_id = data.get("id")
+    if raw_id is not None:
+        return raw_id
+
+    # 2. Try rows[0].id (flex decoders with get=@...:id)
+    rows = data.get("rows")
+    if isinstance(rows, list) and rows:
+        first_row = rows[0]
+        if isinstance(first_row, dict):
+            row_id = first_row.get("id")
+            if row_id is not None:
+                return row_id
+
+    # 3. Try extracting from codes array (flex decoders without explicit id)
+    # Format: {"codes": ["{25}1a16968"]} - the hex value can serve as ID
+    codes = data.get("codes")
+    if isinstance(codes, list) and codes:
+        first_code = codes[0]
+        if isinstance(first_code, str):
+            # Extract hex portion after the bit count, e.g., "{25}1a16968" -> "1a16968"
+            import re
+            match = re.search(r'\{[\d]+\}([0-9a-fA-F]+)', first_code)
+            if match:
+                return match.group(1)
+
+    return "Unknown"
+
+
 def _debug_dump_packet(
     *,
     raw_line: str,
@@ -868,7 +910,7 @@ def rtl_loop(radio_config: dict, mqtt_handler, data_processor, sys_id: str, sys_
                     last_error_line = None
 
                     model = data.get("model", "Unknown")
-                    raw_id = data.get("id", "Unknown")
+                    raw_id = _extract_device_id(data)
                     clean_id = clean_mac(raw_id)
                     dev_name = f"{model} {clean_id}"
                     dev_type = data.get("type", "Untyped")
