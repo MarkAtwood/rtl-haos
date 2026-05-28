@@ -99,15 +99,20 @@ FIELD_META = {
     "rain":                 ("count", "none", "mdi:weather-rainy", "Rain Count"),
     "rain1":                ("count", "none", "mdi:weather-rainy", "Rain Count 1"),
     "rain2":                ("count", "none", "mdi:weather-rainy", "Rain Count 2"),
+    "rain_start":           (None, "none", "mdi:weather-rainy", "Rain Detected"),
 
     # --- Light ---
     "lux":                  ("lx", "illuminance", "mdi:brightness-5", "Light Level"),
     "light_lux":           ("lx", "illuminance", "mdi:brightness-5", "Light Level"),
     "uvi":                 ("UV Index", "none", "mdi:sunglasses", "UV Index"),
+    "uv_index":            ("UV Index", "none", "mdi:sunglasses", "UV Index"),
     "full_lux":             ("cnt", "none", "mdi:brightness-7", "Raw Full Spectrum"),
     "ir_lux":               ("cnt", "none", "mdi:cctv", "Raw IR"),
     "uv":                   ("UV Index", "none", "mdi:sunglasses", "UV Index"),
     "exposure_mins":        ("min", "duration", "mdi:sun-clock", "UV Exposure Time"),
+    "wm":                   ("W/m²", "irradiance", "mdi:white-balance-sunny", "Solar Radiation"),
+    "uv_sensor_id":         (None, "none", "mdi:identifier", "UV Sensor ID"),
+    "uv_status":            (None, "none", "mdi:check-circle", "UV Sensor Status"),
 
     # --- Lightning ---
     "strikes":              ("count", "none", "mdi:flash", "Lightning Strikes"),
@@ -160,6 +165,15 @@ FIELD_META = {
     "seq":                  (None, "none", "mdi:counter", "Sequence"),
     "startup":              (None, "none", "mdi:power", "Startup"),
     "test":                 (None, "none", "mdi:test-tube", "Test Mode"),
+    "radio_clock":          (None, "timestamp", "mdi:radio-tower", "Radio Clock"),
+    "signal":               (None, "none", "mdi:signal", "Signal Type"),
+    "firmware":             (None, "none", "mdi:chip", "Firmware"),
+    "sensitivity":          (None, "none", "mdi:tune", "Sensitivity"),
+    "raw_value":            (None, "none", "mdi:numeric", "Raw Value"),
+    "ad_raw":               (None, "none", "mdi:numeric", "ADC Raw"),
+    "boost":                (None, "none", "mdi:signal-cellular-3", "Boost Mode"),
+    "msg_type":             (None, "none", "mdi:message-text", "Message Type"),
+    "data":                 (None, "none", "mdi:code-braces", "Extra Data"),
 
     # --- Depth / Level ---
     "depth_cm":             ("cm", "distance", "mdi:arrow-collapse-down", "Depth"),
@@ -214,6 +228,8 @@ FIELD_META = {
     "battery_low":         (None, "none", "mdi:battery-alert", "Battery Low (Raw)"),
     "battery_raw":         ("cnt", "none", "mdi:battery", "Battery Raw"),
     "newbattery":          (None, "none", "mdi:battery-plus", "New Battery"),
+    "battery_level":       (None, "none", "mdi:battery", "Battery Level"),
+    "supercap_V":          ("V", "voltage", "mdi:solar-power", "Supercapacitor"),
 
 }
 
