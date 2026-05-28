@@ -185,6 +185,10 @@ FIELD_META = {
     # This is useful to see when a device last transmitted, even if values didn't change.
     "time":                 (None, "timestamp", "mdi:clock-in", "Last Seen"),
 
+    # --- Raw Data ---
+    # Raw hex message from rtl_433, useful for debugging or protocol analysis.
+    "raw_msg":              (None, "none", "mdi:code-tags", "Raw Message"),
+
     # --- Utility Meters ---
     "Consumption":          ("ft³", "gas", "mdi:fire", "Gas Usage"),
     "consumption":          ("ft³", "gas", "mdi:fire", "Gas Usage"),
